@@ -7,12 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.plaf.basic.BasicComboBoxUI;
+
 
 class CustomComboBoxUI extends BasicComboBoxUI {
     

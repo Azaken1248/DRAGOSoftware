@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 
 public class DragoInterface{
 	
-	ImageIcon icon;
+	ImageIcon icon,modeIcon;
 	JFrame mainFrame;
 	JPanel imgPanel,controlPanel;
-	JLabel mainImage,modeLabel;
+	JLabel mainImage,modeLabel,modeImage;
 	JComboBox<String> choiceBox;
 	
 	
@@ -32,6 +32,8 @@ public class DragoInterface{
 
         Image resizedImage = icon.getImage().getScaledInstance(iconWidth, iconHeight, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
+        
+
         
 		
 		//MainFrame
@@ -66,11 +68,21 @@ public class DragoInterface{
 		
 		modeLabel = new JLabel();
 		
-		modeLabel.setText("<MODE>");
+		modeLabel.setText("Battery");
 		modeLabel.setBackground(Color.BLACK);
 		modeLabel.setForeground(Color.ORANGE);
-		modeLabel.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
-		modeLabel.setFont(new Font("Roboto",Font.PLAIN,65));
+		modeLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+		modeLabel.setFont(new Font("Roboto",Font.PLAIN,70));
+		
+		modeImage = new JLabel();
+		
+		modeIcon = new ImageIcon("./Assets/batteryModeLogo.png");
+		
+		Image resizedModeImage = modeIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+    	ImageIcon resizedModeIcon = new ImageIcon(resizedModeImage);
+		
+    	modeImage.setBorder(BorderFactory.createEmptyBorder(20, 100, 0, 100));
+    	modeImage.setIcon(resizedModeIcon);
 		
 		//setting up choice box
 		String[] choices = {"Battery", "Solar Power", "Hybrid"};
@@ -89,13 +101,31 @@ public class DragoInterface{
                     modeLabel.setText(selectedOption);
                     
                     if(choiceBox.getSelectedItem().toString() == "Battery") {
-                    	System.out.println("Battery State");
+                    	modeIcon = new ImageIcon("./Assets/batteryModeLogo.png");
+                    	
+                    	Image resizedModeImage = modeIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    	ImageIcon resizedModeIcon = new ImageIcon(resizedModeImage);
+                    	
+                    	modeImage.setBorder(BorderFactory.createEmptyBorder(20, 100, 0, 100));
+                    	modeImage.setIcon(resizedModeIcon);
                     }
                     else if(choiceBox.getSelectedItem().toString() == "Solar Power") {
-                    	System.out.println("Solar Power State");
+                    	modeIcon = new ImageIcon("./Assets/solarModeLogo.png");
+                    	
+                    	Image resizedModeImage = modeIcon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+                    	ImageIcon resizedModeIcon = new ImageIcon(resizedModeImage);
+                    	
+                    	modeImage.setBorder(BorderFactory.createEmptyBorder(0, 100, 20, 100));
+                    	modeImage.setIcon(resizedModeIcon);
                     }
                     else if(choiceBox.getSelectedItem().toString() == "Hybrid") {
-                    	System.out.println("Hybrid State");
+                    	modeIcon = new ImageIcon("./Assets/hybridModeLogo.png");
+                    	
+                    	Image resizedModeImage = modeIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    	ImageIcon resizedModeIcon = new ImageIcon(resizedModeImage);
+                    	
+                    	modeImage.setBorder(BorderFactory.createEmptyBorder(20, 100, 0, 100));
+                    	modeImage.setIcon(resizedModeIcon);
                     }
                     else {
                     	System.out.println("No State");
@@ -104,6 +134,7 @@ public class DragoInterface{
 	    	}    	
 	    });
 	    
+	   
 	    
 		
 		//Adding components to Panels
@@ -111,6 +142,8 @@ public class DragoInterface{
 		
 		controlPanel.add(choiceBox);
 		controlPanel.add(modeLabel);
+		controlPanel.add(modeImage);
+		
 		
 		
 		//Adding Components To MainFrame

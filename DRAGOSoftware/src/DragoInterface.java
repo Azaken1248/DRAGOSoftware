@@ -2,9 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,7 +21,7 @@ public class DragoInterface implements ActionListener{
 	ImageIcon icon;
 	JFrame mainFrame;
 	JPanel imgPanel,controlPanel;
-	JLabel mainImage;
+	JLabel mainImage,modeLabel;
 	JComboBox<String> choiceBox;
 	
 	
@@ -63,6 +66,14 @@ public class DragoInterface implements ActionListener{
 		mainImage.setIcon(resizedIcon);
 		mainImage.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
 		
+		modeLabel = new JLabel();
+		
+		modeLabel.setText("<MODE>");
+		modeLabel.setBackground(Color.BLACK);
+		modeLabel.setForeground(Color.ORANGE);
+		modeLabel.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
+		modeLabel.setFont(new Font("Roboto",Font.PLAIN,65));
+		
 		//setting up choice box
 		String[] choices = {"Battery", "Solar Power", "Hybrid"};
 	    choiceBox = new JComboBox<>(choices);
@@ -73,7 +84,27 @@ public class DragoInterface implements ActionListener{
 	    choiceBox.setRenderer(new ColorfulListCellRenderer());
 	    choiceBox.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
 	    choiceBox.setPreferredSize(new Dimension(300, 30));
-	    
+	    choiceBox.addItemListener(new ItemListener() {
+	    	public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    String selectedOption = choiceBox.getSelectedItem().toString();
+                    modeLabel.setText(selectedOption);
+                    
+                    if(choiceBox.getSelectedItem().toString() == "Battery") {
+                    	System.out.println("Battery State");
+                    }
+                    else if(choiceBox.getSelectedItem().toString() == "Solar Power") {
+                    	System.out.println("Solar Power State");
+                    }
+                    else if(choiceBox.getSelectedItem().toString() == "Hybrid") {
+                    	System.out.println("Hybrid State");
+                    }
+                    else {
+                    	System.out.println("No State");
+                    }
+                }
+	    	}    	
+	    });
 	    
 	    
 		
@@ -81,6 +112,7 @@ public class DragoInterface implements ActionListener{
 		imgPanel.add(mainImage);
 		
 		controlPanel.add(choiceBox);
+		controlPanel.add(modeLabel);
 		
 		
 		//Adding Components To MainFrame

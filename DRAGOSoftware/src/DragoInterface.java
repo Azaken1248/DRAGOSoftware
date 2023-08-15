@@ -31,7 +31,7 @@ public class DragoInterface implements ActionListener{
 
         Image resizedImage = icon.getImage().getScaledInstance(iconWidth, iconHeight, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
-
+        
 		
 		//MainFrame
 		mainFrame = new JFrame("DRAGO Interface");
@@ -61,6 +61,7 @@ public class DragoInterface implements ActionListener{
 		mainImage = new JLabel();
 		
 		mainImage.setIcon(resizedIcon);
+		mainImage.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
 		
 		//setting up choice box
 		String[] choices = {"Battery", "Solar Power", "Hybrid"};
@@ -69,9 +70,12 @@ public class DragoInterface implements ActionListener{
 	    choiceBox.setSelectedIndex(0);
 	    choiceBox.setBackground(Color.DARK_GRAY);
 	    choiceBox.setUI(new CustomComboBoxUI());
+	    choiceBox.setRenderer(new ColorfulListCellRenderer());
 	    choiceBox.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
 	    choiceBox.setPreferredSize(new Dimension(300, 30));
-	     //choiceBox.setBounds(50, 50, 200, 40);
+	    
+	    
+	    
 		
 		//Adding components to Panels
 		imgPanel.add(mainImage);
